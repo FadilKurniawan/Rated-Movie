@@ -1,4 +1,4 @@
-package com.devfk.ratedmovie.movies.detail
+package com.devfk.ratedmovie.feature.movies.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,12 +8,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
-import com.devfk.ratedmovie.R
 import com.devfk.ratedmovie.data.api.APIService
 import com.devfk.ratedmovie.data.api.BaseService
 import com.devfk.ratedmovie.data.repository.NetworkState
 import com.devfk.ratedmovie.data.util.Constant
-import com.devfk.ratedmovie.data.vo.Movie
+import com.devfk.ratedmovie.data.models.Movie
 import com.devfk.ratedmovie.databinding.ActivityMovieDetailBinding
 import java.text.NumberFormat
 import java.util.*

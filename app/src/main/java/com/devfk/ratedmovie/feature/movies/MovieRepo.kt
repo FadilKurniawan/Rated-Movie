@@ -1,9 +1,9 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.devfk.ratedmovie.data.api.APIService
-import com.devfk.ratedmovie.data.vo.Movie
+import com.devfk.ratedmovie.data.models.Movie
 import io.reactivex.disposables.CompositeDisposable
 
 class MovieRepo ( private val apiService: APIService, private val compositeDisposable: CompositeDisposable) : DataSource.Factory<Int, Movie>() {

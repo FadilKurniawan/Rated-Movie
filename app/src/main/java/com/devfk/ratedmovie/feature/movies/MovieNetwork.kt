@@ -1,13 +1,11 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.devfk.ratedmovie.data.api.APIService
 import com.devfk.ratedmovie.data.repository.NetworkState
-import com.devfk.ratedmovie.data.vo.Movie
-import com.devfk.ratedmovie.data.vo.Wrapper
+import com.devfk.ratedmovie.data.models.Movie
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.lang.Exception

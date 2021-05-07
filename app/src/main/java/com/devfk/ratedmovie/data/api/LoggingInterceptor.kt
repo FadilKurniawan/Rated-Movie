@@ -2,11 +2,6 @@ package com.devfk.ratedmovie.data.api
 
 import android.util.Log
 import okhttp3.logging.HttpLoggingInterceptor as HttpLoggingInterceptor1
-
-/**
- * Created by @dodydmw19 on 09, June, 2020
- */
-
 class LoggingInterceptor  {
     companion object{
         private var SERVICE_TAG = "apiServices"

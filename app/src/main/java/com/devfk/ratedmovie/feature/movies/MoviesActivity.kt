@@ -1,8 +1,8 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,18 +11,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.devfk.ratedmovie.data.api.APIService
 import com.devfk.ratedmovie.data.api.BaseService
 import com.devfk.ratedmovie.data.repository.NetworkState
-import com.devfk.ratedmovie.databinding.ActivityMainBinding
+import com.devfk.ratedmovie.databinding.ActivityMoviesBinding
 
-class MainActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
-
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMoviesBinding
     private lateinit var viewModel: MovieViewModel
     lateinit var moviePagedListRepo: MoviePagedListRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMoviesBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 

@@ -1,15 +1,12 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.paging.Config
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.devfk.ratedmovie.data.api.APIService
 import com.devfk.ratedmovie.data.repository.NetworkState
-import com.devfk.ratedmovie.data.vo.Movie
+import com.devfk.ratedmovie.data.models.Movie
 import io.reactivex.disposables.CompositeDisposable
 
 class MoviePagedListRepo (private val apiService: APIService) {

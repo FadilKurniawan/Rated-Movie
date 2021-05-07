@@ -1,4 +1,4 @@
-package com.devfk.ratedmovie.data.vo
+package com.devfk.ratedmovie.data.models
 
 
 import com.google.gson.annotations.SerializedName

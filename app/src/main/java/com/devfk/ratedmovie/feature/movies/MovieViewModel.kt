@@ -1,10 +1,10 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.devfk.ratedmovie.data.repository.NetworkState
-import com.devfk.ratedmovie.data.vo.Movie
+import com.devfk.ratedmovie.data.models.Movie
 import io.reactivex.disposables.CompositeDisposable
 
 class MovieViewModel (private val movieRepo: MoviePagedListRepo):ViewModel(){

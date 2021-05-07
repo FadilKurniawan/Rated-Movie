@@ -1,21 +1,20 @@
-package com.devfk.ratedmovie.movies
+package com.devfk.ratedmovie.feature.movies
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.devfk.ratedmovie.data.repository.NetworkState
 import com.devfk.ratedmovie.data.util.Constant
-import com.devfk.ratedmovie.data.vo.Movie
+import com.devfk.ratedmovie.data.models.Movie
 import com.devfk.ratedmovie.databinding.MovieListItemBinding
 import com.devfk.ratedmovie.databinding.NetworkStateItemBinding
-import com.devfk.ratedmovie.movies.detail.MovieDetail
+import com.devfk.ratedmovie.feature.movies.detail.MovieDetail
 
 class MoviePagedListAdapter(val context: Context):PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
