@@ -14,8 +14,17 @@ interface APIService {
     fun getMovieDetails(@Path("movie_id") id:Int): Single<Movie>
 
     @GET("movie/popular")
-    fun getPopularMovie(@Query("page") page:Int): Single<Wrapper>
+    suspend fun getPopularMovie(@Query("page") page:Int): Response<Wrapper>
 
     @GET("movie/upcoming")
-    suspend fun getUpcomingMovie():Response<Wrapper>
+    suspend fun getUpcomingMovie(@Query("page") page:Int):Response<Wrapper>
+
+    @GET("movie/latest")
+    suspend fun getNewMovie(@Query("page") page:Int):Response<Wrapper>
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovie(@Query("page") page:Int):Response<Wrapper>
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlayMovie(@Query("page") page:Int):Response<Wrapper>
 }

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Rated Movie</string>
     <string name="txt_upcoming">Upcoming</string>
+    <string name="txt_popular">Popular Movie</string>
+    <string name="txt_top_rated_movie">Top Rated Movie</string>
+    <string name="txt_category">Category</string>
 </resources>
