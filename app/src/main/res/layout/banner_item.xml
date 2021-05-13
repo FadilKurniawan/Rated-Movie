@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/cvParent"
     android:foreground="?selectableItemBackground"
     app:cardElevation="@dimen/_10sdp"
     app:cardCornerRadius="@dimen/_10sdp"
@@ -16,7 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <com.devfk.ratedmovie.helper.ImageViewTopCrop
             android:id="@+id/imvBanner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

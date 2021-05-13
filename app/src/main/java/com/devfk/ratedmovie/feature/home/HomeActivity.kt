@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupBanner() {
-        mBannerAdapter = BannerPagerAdapter()
+        mBannerAdapter = BannerPagerAdapter(this)
         binding.vpUpcomingMovie.apply {
             adapter = mBannerAdapter
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -115,9 +115,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRv(){
-        mPopulerAdapter = PosterPagerAdapter()
-        mTopRatedAdapter = PosterPagerAdapter()
-        mCategoryAdapter = CategoryAdapter()
+        mPopulerAdapter = PosterPagerAdapter(this)
+        mTopRatedAdapter = PosterPagerAdapter(this)
+        mCategoryAdapter = CategoryAdapter(this)
         mCategoryAdapter.listItem = viewModel.categoryList
 
         binding.rvPopularMovie.apply {

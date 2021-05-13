@@ -1,15 +1,15 @@
 package com.devfk.ratedmovie.feature.home.category
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.devfk.ratedmovie.data.models.Category
 import com.devfk.ratedmovie.databinding.CategoryHomeItemBinding
 
-class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(private val context: Context) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(val binding:CategoryHomeItemBinding)
         :RecyclerView.ViewHolder(binding.root)
@@ -46,6 +46,16 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
             relSeries.setOnClickListener {
 
             }
+        }
+
+        if (position == 0){
+            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
+            params.marginStart = 35
+            holder.itemView.layoutParams = params
+        }else{
+            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
+            params.bottomMargin = 0
+            holder.itemView.layoutParams = params
         }
     }
     override fun getItemCount(): Int = listItem.size

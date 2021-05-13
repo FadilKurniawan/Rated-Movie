@@ -2,4 +2,8 @@
 <resources>
     <dimen name="viewpager_next_item_visible">56dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">21dp</dimen>
+    <dimen name="text_header">@dimen/_14sdp</dimen>
+    <dimen name="text_corner_header">@dimen/_12sdp</dimen>
+    <dimen name="text_sub_header">@dimen/_12sdp</dimen>
+    <dimen name="radius_corner">@dimen/_70sdp</dimen>
 </resources>

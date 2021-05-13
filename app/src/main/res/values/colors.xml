@@ -12,7 +12,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#a01818</color>
     <color name="red_dark">#6b0000</color>
+    <color name="blue_gray">#6D7E94</color>
     <color name="blue_light">#5da0d1</color>
     <color name="blue">#2372a0</color>
     <color name="blue_dark">#004771</color>
+    <color name="yellow">#FFC107</color>
 </resources>

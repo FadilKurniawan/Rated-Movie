@@ -8,9 +8,36 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/blue</item>
         <item name="colorSecondaryVariant">@color/blue_dark</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="yellowRatingBar" parent="@style/Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/btn_yellow_rating_star</item>
+        <item name="android:minHeight">12dip</item>
+        <item name="android:maxHeight">14dip</item>
+    </style>
+    <style name="redRatingBar" parent="@style/Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/red_rating_star</item>
+        <item name="android:minHeight">12dip</item>
+        <item name="android:maxHeight">14dip</item>
+    </style>
+    <style name="ClickableView">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+    </style>
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+<!--        <item name="cornerSizeTopRight">4dp</item>-->
+<!--        <item name="cornerSizeTopLeft">8dp</item>-->
+        <item name="cornerSizeBottomRight">@dimen/_100sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_100sdp</item>
     </style>
 </resources>

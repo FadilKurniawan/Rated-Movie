@@ -1,5 +1,7 @@
 package com.devfk.ratedmovie.feature.banner
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -11,8 +13,10 @@ import com.devfk.ratedmovie.R
 import com.devfk.ratedmovie.data.models.Movie
 import com.devfk.ratedmovie.data.util.Constant
 import com.devfk.ratedmovie.databinding.BannerItemBinding
+import com.devfk.ratedmovie.feature.home.HomeActivity
+import com.devfk.ratedmovie.feature.movie.MovieDetailActivity
 
-class BannerPagerAdapter: PagingDataAdapter<Movie, BannerPagerAdapter.FilmViewHolder>(diffCallback) {
+class BannerPagerAdapter(private val context: Context) : PagingDataAdapter<Movie, BannerPagerAdapter.FilmViewHolder>(diffCallback) {
 
     inner class FilmViewHolder(val binding:BannerItemBinding)
         :RecyclerView.ViewHolder(binding.root)
@@ -43,6 +47,12 @@ class BannerPagerAdapter: PagingDataAdapter<Movie, BannerPagerAdapter.FilmViewHo
                 crossfade(1000)
                 placeholder(R.drawable.ic_placeholder)
                 scale(Scale.FILL)
+            }
+
+            holder.binding.cvParent.setOnClickListener {
+                val intent = Intent(context, MovieDetailActivity::class.java)
+                intent.putExtra("id", currentFilm?.id)
+                context.startActivity(intent)
             }
         }
     }
