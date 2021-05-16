@@ -10,15 +10,16 @@
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/red_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorButtonNormal">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue</item>
-        <item name="colorSecondaryVariant">@color/blue_dark</item>
+        <item name="colorSecondary">@color/yellow</item>
+        <item name="colorSecondaryVariant">@color/yellow</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
         <item name="android:windowLightStatusBar"  tools:targetApi="23">true</item>
-        <!-- Customize your theme here. -->
     </style>
+
     <style name="yellowRatingBar" parent="@style/Widget.AppCompat.RatingBar.Small">
         <item name="android:progressDrawable">@drawable/btn_yellow_rating_star</item>
         <item name="android:minHeight">12dip</item>

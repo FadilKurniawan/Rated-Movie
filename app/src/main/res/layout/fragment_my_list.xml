@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_16sdp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/nunito_black"
+                android:text="My List"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_24sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <RelativeLayout
+                android:id="@+id/relHome"
+                style="@style/ClickableView"
+                android:layout_width="@dimen/_58sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:background="@drawable/frame"
+                android:padding="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgFilter"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:background="@drawable/ic_filter"
+                    android:scaleType="centerInside"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tvFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/imgFilter"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Filter"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clAppBar" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMyList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_70sdp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

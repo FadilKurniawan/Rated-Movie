@@ -5,17 +5,25 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.GridLayoutAnimationController
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.devfk.ratedmovie.R
 import com.devfk.ratedmovie.databinding.ActivityMainBinding
+import com.devfk.ratedmovie.feature.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.hypot
 import kotlin.math.max
@@ -25,74 +33,83 @@ import kotlin.math.max
 class MainActivity : AppCompatActivity() {
 
 
-    private var mPagerAdapter: MainPagerAdapter? = null
+//    private var mPagerAdapter: MainPagerAdapter? = null
     private lateinit var binding:ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUpPagerListener()
+//        setUpPagerListener()
+        setupNavigation()
         actionClick()
 
     }
 
-    private fun setUpPagerListener() {
-        mPagerAdapter = MainPagerAdapter(supportFragmentManager)
-        binding.pager.clipToPadding = false
-        binding.pager.offscreenPageLimit = 1
+    private fun setupNavigation() {
+        val navHostFrag = supportFragmentManager.findFragmentById(R.id.fragmentHost) as NavHostFragment
+        navController = navHostFrag.navController
 
-        val gap = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            4f,
-            resources.displayMetrics
-        ).toInt()
-
-        binding.pager.pageMargin = gap
-        binding.pager.adapter = mPagerAdapter
-        binding.pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-
-            }
-
-            override fun onPageSelected(position: Int) {
-                setSelectedNavigation(position)
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-        })
-
-        binding.pager.setPageTransformer(false) { view, _ ->
-            view.alpha = 0f
-            view.visibility = View.VISIBLE
-
-            // Start Animation for a short period of time
-            view.animate().alpha(1f).duration = view.resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            setSelectedNavigation(destination.id)
         }
-
     }
-    private fun setSelectedNavigation(position: Int) {
-        when (position) {
-            0 -> {
+
+//        private fun setUpPagerListener() {
+//        mPagerAdapter = MainPagerAdapter(supportFragmentManager)
+////        binding.pager.clipToPadding = false
+////        binding.pager.offscreenPageLimit = 1
+//
+//        val gap = TypedValue.applyDimension(
+//            TypedValue.COMPLEX_UNIT_DIP,
+//            4f,
+//            resources.displayMetrics
+//        ).toInt()
+//
+//        binding.pager.pageMargin = gap
+//        binding.pager.adapter = mPagerAdapter
+//        binding.pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//            override fun onPageScrolled(
+//                position: Int,
+//                positionOffset: Float,
+//                positionOffsetPixels: Int
+//            ) {
+//
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                setSelectedNavigation(position)
+//            }
+//
+//            override fun onPageScrollStateChanged(state: Int) {
+//
+//            }
+//        })
+//
+//        binding.pager.setPageTransformer(false) { view, _ ->
+//            view.alpha = 0f
+//            view.visibility = View.VISIBLE
+//
+//            // Start Animation for a short period of time
+//            view.animate().alpha(1f).duration = view.resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+//        }
+//
+//    }
+
+    private fun setSelectedNavigation(navId: Int) {
+        when (navId) {
+            R.id.navIdHome -> {
                 setSelectorBackgroundNav(binding.relHome, binding.imgHome, R.drawable.home_active, true)
                 setSelectorBackgroundNav(binding.relList, binding.imgList, R.drawable.bookmarks_deactive, false)
             }
-            1 -> {
-                setSelectorBackgroundNav(binding.relHome, binding.imgHome, R.drawable.home_deactive, false)
-                setSelectorBackgroundNav(binding.relList, binding.imgList, R.drawable.bookmarks_deactive, false)
-            }
-            2 -> {
+            R.id.navIdMylist -> {
                 setSelectorBackgroundNav(binding.relHome, binding.imgHome, R.drawable.home_deactive, false)
                 setSelectorBackgroundNav(binding.relList, binding.imgList, R.drawable.bookmarks_active, true)
             }
         }
     }
+
     private fun setSelectorBackgroundNav(
         relBtn: RelativeLayout,
         imgMenu: ImageView,
@@ -134,8 +151,8 @@ class MainActivity : AppCompatActivity() {
             imgMenu.layoutParams = params
             imgMenu.setBackgroundResource(selectedDrawableRes)
             makeAnimationFlip(imgMenu, selectedDrawableRes)
-//            imgMenu.setBackgroundResource(selectedDrawableRes)
-//            makeAnimationShow(imgMenu)
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                makeAnimationCircleShow(imgMenu)},200)
 
         }
     }
@@ -201,7 +218,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun actionClick() {
         binding.relHome.setOnClickListener {
-            binding.pager.currentItem = 0
+//            binding.pager.currentItem = 0
+            if(navController.currentDestination?.id != R.id.navIdHome) {
+                navController.navigate(R.id.action_bookmarkItemFragment_to_homeFragment)
+            }
         }
 
         binding.cvSearch.setOnClickListener {
@@ -209,7 +229,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.relList.setOnClickListener {
-            binding.pager.currentItem = 1
+//            binding.pager.currentItem = 1
+            if(navController.currentDestination?.id != R.id.navIdMylist) {
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToBookmarkItemFragment())
+            }
         }
 
     }

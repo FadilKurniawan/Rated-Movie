@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?attr/colorOnPrimary"
     android:layout_height="match_parent">
     
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_350sdp"
-        android:background="@color/white"
+        android:background="?attr/colorOnPrimary"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -17,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorBackgroundFloating"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -37,8 +38,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:shapeAppearanceOverlay="@style/Circular"/>
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_49sdp"
+                    android:background="@drawable/poster_mask"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
                 <ImageView
@@ -77,8 +87,8 @@
                 <RelativeLayout
                     android:id="@+id/relPlay"
                     style="@style/ClickableView"
-                    android:layout_width="@dimen/_76sdp"
-                    android:layout_height="@dimen/_76sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_6sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +96,8 @@
 
                     <ImageView
                         android:id="@+id/imgPlay"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="@dimen/_76sdp"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
                         android:background="@drawable/btn_play_light"
@@ -103,10 +113,13 @@
                     android:layout_height="@dimen/_18sdp"
                     android:layout_marginStart="@dimen/_24sdp"
                     android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view2">
 
                     <ImageView
+                        android:id="@+id/imgBookmark"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
@@ -123,8 +136,10 @@
                     android:layout_height="@dimen/_18sdp"
                     android:layout_marginEnd="@dimen/_24sdp"
                     android:layout_marginBottom="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view2">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -152,13 +167,14 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="?attr/colorOnPrimary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/_16sdp"
+                android:background="?attr/colorOnPrimary"
                 android:id="@+id/linearLayout">
 
 
@@ -190,18 +206,18 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:text="drama, crime"
                         android:textSize="@dimen/_12sdp"/>
-
+`
                     <RatingBar
                         android:id="@+id/ratebar"
                         style="@style/Widget.AppCompat.RatingBar.Indicator"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_18sdp"
-                        android:progressTint="@color/red"
                         android:rating="2"
                         android:numStars="5"
                         android:stepSize="1"
+                        android:progressDrawable="@drawable/red_rating_star"
                         />
 
                     <androidx.constraintlayout.widget.ConstraintLayout

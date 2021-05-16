@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Circular">
-        <item name="cornerSizeBottomLeft">35%</item>
-        <item name="cornerSizeBottomRight">35%</item>
+        <item name="cornerSizeBottomLeft">15%</item>
+        <item name="cornerSizeBottomRight">15%</item>
     </style>
 </resources>

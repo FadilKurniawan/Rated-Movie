@@ -13,9 +13,9 @@ import com.devfk.ratedmovie.feature.bookmark.dummy.DummyContent.DummyItem
  * [RecyclerView.Adapter] that can display a [DummyItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyBookmarkItemRecyclerViewAdapter(
+class MyListAdapter(
     private val values: List<DummyItem>
-) : RecyclerView.Adapter<MyBookmarkItemRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MyListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
