@@ -41,4 +41,9 @@ constructor (private val apiService: APIService):ViewModel(){
     val newListMovie = Pager(PagingConfig(pageSize = 1)){
         PosterPagingSource(apiService, PosterPagingSource.TYPE.NEW)
     }.flow.cachedIn(viewModelScope)
+
+    fun similarListMovie(id:Int, language: String) = Pager(PagingConfig(pageSize = 1)){
+        PosterPagingSource(apiService, PosterPagingSource.TYPE.SIMILAR, id, language)
+    }.flow.cachedIn(viewModelScope)
+
 }

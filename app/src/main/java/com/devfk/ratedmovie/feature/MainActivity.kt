@@ -3,24 +3,19 @@ package com.devfk.ratedmovie.feature
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import android.view.animation.GridLayoutAnimationController
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.viewpager.widget.ViewPager
 import com.devfk.ratedmovie.R
 import com.devfk.ratedmovie.databinding.ActivityMainBinding
 import com.devfk.ratedmovie.feature.home.HomeFragmentDirections
@@ -31,7 +26,6 @@ import kotlin.math.max
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
 
 //    private var mPagerAdapter: MainPagerAdapter? = null
     private lateinit var binding:ActivityMainBinding
@@ -44,9 +38,7 @@ class MainActivity : AppCompatActivity() {
 //        setUpPagerListener()
         setupNavigation()
         actionClick()
-
     }
-
     private fun setupNavigation() {
         val navHostFrag = supportFragmentManager.findFragmentById(R.id.fragmentHost) as NavHostFragment
         navController = navHostFrag.navController
@@ -111,10 +103,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSelectorBackgroundNav(
-        relBtn: RelativeLayout,
-        imgMenu: ImageView,
-        selectedDrawableRes: Int,
-        active: Boolean
+            relBtn: RelativeLayout,
+            imgMenu: ImageView,
+            selectedDrawableRes: Int,
+            active: Boolean
     ) {
         if(active){
 //            imgMenu.visibility = View.GONE

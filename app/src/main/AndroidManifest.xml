@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RatedMovie">
-        <activity android:name=".feature.movie.MovieDetailActivity"></activity>
-        <activity android:name=".feature.home.HomeActivity"></activity>
+        <activity android:name=".feature.poster.PosterActivity"></activity>
+        <activity android:name=".feature.movie.MovieDetailActivity" />
+        <activity android:name=".feature.home.HomeActivity" />
         <activity android:name=".feature.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

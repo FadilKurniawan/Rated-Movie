@@ -51,9 +51,9 @@ class PosterPagerAdapter(private val context: Context) : PagingDataAdapter<Movie
         val currentFilm = getItem(position)
         holder.binding.apply {
             tvTitle.text = currentFilm?.title
-            if(currentFilm?.releaseDate!=null){
+            if(!currentFilm?.releaseDate.isNullOrEmpty()){
                 val sdf = SimpleDateFormat("yyyy-MM-dd")
-                val date = sdf.parse(currentFilm.releaseDate)
+                val date = sdf.parse(currentFilm?.releaseDate)
                 val df = SimpleDateFormat("yyyy")
                 val year = df.format(date!!)
                 tvYear.text = "($year)"

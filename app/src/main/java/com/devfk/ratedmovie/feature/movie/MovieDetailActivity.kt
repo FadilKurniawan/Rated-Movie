@@ -16,6 +16,7 @@ import com.devfk.ratedmovie.R
 import com.devfk.ratedmovie.data.models.Movie
 import com.devfk.ratedmovie.data.util.Constant
 import com.devfk.ratedmovie.databinding.ActivityMovieDetailBinding
+import com.devfk.ratedmovie.feature.poster.PosterActivity
 import com.devfk.ratedmovie.feature.poster.PosterPagerAdapter
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,9 +34,10 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var movie: Movie
     private val viewModel : MovieDetailViewModel by viewModels()
     private var isSaved:Boolean = false
+    private var spokenLang:String = ""
 
     override fun onNightModeChanged(mode: Int) {
-        Log.d("TAG","*** DEBUG $mode")
+        Log.d("TAG", "*** DEBUG $mode")
         binding.imgPlay.setBackgroundResource(R.drawable.btn_play_dark)
         super.onNightModeChanged(mode)
     }
@@ -47,12 +49,20 @@ class MovieDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         val intent = intent
         val id = intent.getIntExtra("id", 0)
-        onActionClick()
+        onActionClick(id)
         setupRV()
         loadDetailMovie(id)
     }
 
-    private fun onActionClick() {
+    private fun onActionClick(id: Int) {
+
+        binding.linkSimilar.setOnClickListener {
+            val intent = Intent(this, PosterActivity::class.java)
+            intent.putExtra(Constant.CATEGORY_PARAMS, Constant.CATEGORY_SIMILAR)
+            intent.putExtra(Constant.ID_PARAMS, id)
+            intent.putExtra(Constant.LANG_PARAMS, spokenLang)
+            startActivity(intent)
+        }
         binding.relBack.setOnClickListener {
             onBackPressed()
         }
@@ -84,9 +94,9 @@ class MovieDetailActivity : AppCompatActivity() {
         }else{
             viewModel.insertMovie(movie)
             Snackbar.make(
-                view,
-                "Movie Saved",
-                Snackbar.LENGTH_LONG
+                    view,
+                    "Movie Saved",
+                    Snackbar.LENGTH_LONG
             ).show()
             binding.imgBookmark.setBackgroundResource(R.drawable.ic_bookmark_detail_filled)
         }
@@ -95,8 +105,8 @@ class MovieDetailActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     @InternalCoroutinesApi
     private fun loadDetailMovie(id: Int) {
-        viewModel.isMovieSaved(id).observe(this,{
-            if(it.isNotEmpty()){
+        viewModel.isMovieSaved(id).observe(this, {
+            if (it.isNotEmpty()) {
                 Log.d("TAG", "MOVIE IS AWESOME HERE ")
                 isSaved = true
                 binding.imgBookmark.setBackgroundResource(R.drawable.ic_bookmark_detail_filled)
@@ -106,6 +116,7 @@ class MovieDetailActivity : AppCompatActivity() {
         viewModel.movieResp(id).observe(this, {
             movie = it
             binding.apply {
+                spokenLang = it.spokenLanguages?.first()?.iso6391.toString()
                 imgPoster.load(Constant.POSTER_BASE_URL + it.posterPath) {
                     crossfade(true)
                     crossfade(1000)
@@ -129,9 +140,8 @@ class MovieDetailActivity : AppCompatActivity() {
                 tvLength.text = "${it.runtime} min"
                 tvDescription.text = it.overview
             }
-
             loadSimilarMovies(it)
-            mSimilarAdapter.addLoadStateListener {combinedLoadStates->
+            mSimilarAdapter.addLoadStateListener { combinedLoadStates ->
                 if (combinedLoadStates.refresh != LoadState.Loading && mSimilarAdapter.itemCount < 1) {
                     binding.clSimilar.visibility = View.GONE
                     binding.rvSimilar.visibility = View.GONE
@@ -161,9 +171,9 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.rvSimilar.apply {
             adapter = mSimilarAdapter
             layoutManager = LinearLayoutManager(
-                this@MovieDetailActivity,
-                LinearLayoutManager.HORIZONTAL,
-                false
+                    this@MovieDetailActivity,
+                    LinearLayoutManager.HORIZONTAL,
+                    false
             )
             setHasFixedSize(true)
         }

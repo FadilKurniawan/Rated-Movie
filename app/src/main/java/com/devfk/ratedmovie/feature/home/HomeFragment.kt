@@ -1,5 +1,6 @@
 package com.devfk.ratedmovie.feature.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.devfk.ratedmovie.R
+import com.devfk.ratedmovie.data.util.Constant
 import com.devfk.ratedmovie.databinding.FragmentHomeBinding
 import com.devfk.ratedmovie.feature.banner.BannerPagerAdapter
 import com.devfk.ratedmovie.feature.home.category.CategoryAdapter
+import com.devfk.ratedmovie.feature.movie.MovieDetailActivity
+import com.devfk.ratedmovie.feature.poster.PosterActivity
 import com.devfk.ratedmovie.feature.poster.PosterPagerAdapter
 import com.devfk.ratedmovie.helper.HorizontalMarginItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +45,20 @@ class HomeFragment : Fragment() {
         setupRv()
         setupBanner()
         loadingData()
+        actionClick()
+    }
+
+    private fun actionClick() {
+        binding.linkPopular.setOnClickListener {
+            val intent = Intent(context, PosterActivity::class.java)
+            intent.putExtra(Constant.CATEGORY_PARAMS, Constant.CATEGORY_POPULAR)
+            startActivity(intent)
+        }
+        binding.linkTopRate.setOnClickListener {
+            val intent = Intent(context, PosterActivity::class.java)
+            intent.putExtra(Constant.CATEGORY_PARAMS, Constant.CATEGORY_TOP_RATED)
+            startActivity(intent)
+        }
     }
 
     private fun setupBanner() {
